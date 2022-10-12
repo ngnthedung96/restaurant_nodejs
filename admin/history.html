@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quản lý hóa đơn</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- FooTable -->
+    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/025c1ecb3f.js" crossorigin="anonymous"></script>
+
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="./toastResource/toast.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <a class="dropdown-toggle hide admin-profile" href="#">
+                                <span class="block m-t-xs font-bold admin-name"></span>
+                            </a>
+                            <a class="dropdown-toggle login-nav" href="./login.html">
+                                <span class="block m-t-xs font-bold">Đăng Nhập</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="permission-nav hide">
+                        <a href="#"><span class="nav-label">Quản lý nhân sự</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                        </ul>
+                    </li>
+                    <li class="table-nav">
+                        <a href="./table.html"><span class="nav-label">Quản Lý Bàn</span></span></a>
+                    </li>
+                    <li class="menu-nav hide">
+                        <a href="#"><span class="nav-label">Quản Lý Món</span><span class="fa arrow"></span></span></a>
+                        <ul class="nav nav-second-level collapse">
+                        </ul>
+                    </li>
+                    <li class="table-order-nav hide">
+
+                    </li>
+                    <li class="timekeeping-nav hide">
+
+                    </li>
+                    <li class="request-table-nav hide">
+
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+                                class="fa fa-bars"></i> </a>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <a href="#" class="logOut-nav hide">
+                                <i class="fa fa-sign-out"></i> Log out
+                            </a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Quản lý hóa đơn</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <strong>Quản lý hóa đơn</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ibox-history ">
+                            <div id="order-sort"
+                                style="background: #fff; cursor: pointer; padding: 5px 10px; margin-bottom: 2%; border-radius: 5%; border: 1px solid #ccc; width: 20%">
+                                <i class="fa fa-calendar"></i>&nbsp;
+                                <span></span> <i class="fa fa-caret-down"></i>
+                            </div>
+
+                            <div class="ibox-content">
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tên Bàn</th>
+                                            <th>Người thanh toán</th>
+                                            <th class="hide"></th>
+                                            <th class="hide"></th>
+                                            <th>Tổng tiền</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div id="toast">
+
+        </div>
+
+
+
+        <!-- Mainly scripts -->
+        <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+
+        <!-- FooTable -->
+        <script src="js/plugins/footable/footable.all.min.js"></script>\
+
+        <script src="js/moment.min.js"></script>
+        <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+
+        <!-- Custom and plugin javascript -->
+        <script src="js/inspinia.js"></script>
+        <script src="js/plugins/pace/pace.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script type="module" src="js/history.js"></script>
+
+        <!-- Page-Level Scripts -->
+        <script>
+            $(document).ready(function () {
+
+                $('.footable').footable();
+                $('.footable2').footable();
+
+            });
+
+        </script>
+
+</body>
+
+</html>
