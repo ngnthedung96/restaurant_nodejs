@@ -62,6 +62,7 @@ function renderMenu(orders, count) {
                     <tr>
                         <td width="90">
                             <div class="cart-product-imitation">
+                            <img style = "width:90%" src="${order.food.img}" alt="">
                             </div>
                         </td>
                         <select class = "product hide update" name="" id="">
@@ -112,9 +113,6 @@ function renderMenu(orders, count) {
             type: "GET",
             url: "http://localhost:3333/api/admins/menu",
             dataType: "json",
-            headers: {
-                token: 'Bearer ' + localStorage.getItem("accessAdminToken"),
-            },
             success: function (data) {
                 for (let food of data.menu) {
                     if (!food_idArr.includes(food.id)) {

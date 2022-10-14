@@ -25,11 +25,20 @@ function login() {
             },
             dataType: "json",
             success: function (data) {
-                setTimeout(function () {
-                    window.close()
-                    localStorage.setItem('accessAdminToken', data.accessAdmintoken);
-                    window.open('/admin/table_admins.html')
-                }, 1500)
+                if (data.admin.permission >= 1) {
+                    setTimeout(function () {
+                        window.close()
+                        localStorage.setItem('accessAdminToken', data.accessAdmintoken);
+                        window.open('/admin/table.html')
+                    }, 1500)
+                }
+                else {
+                    setTimeout(function () {
+                        window.close()
+                        localStorage.setItem('accessAdminToken', data.accessAdmintoken);
+                        window.open('/admin/index.html')
+                    }, 1500)
+                }
             },
             error: function (data) {
                 const err = data.responseJSON.errors[0].msg

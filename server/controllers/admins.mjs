@@ -93,6 +93,7 @@ const login = async (req, res, next) => {
         res.status(200).json({
             status: true,
             msg: 'Đăng nhập thành công',
+            admin,
             accessAdmintoken: generateAccessToken(admin)
         });
         next()

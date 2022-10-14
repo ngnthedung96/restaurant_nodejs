@@ -113,8 +113,6 @@ router.get('/admins/table',
 // menu
 
 router.get('/admins/menu',
-    tokenValidate.tokenAdminValidate.verifyToken,
-
     menu_foodController.getMenu
 )
 router.post('/admins/menu/add',

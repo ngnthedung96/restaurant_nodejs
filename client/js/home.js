@@ -13,26 +13,18 @@ function tableBooking() {
 function renderMenu() {
     const menuContainer = document.querySelector(".tab-content")
     let menu = null
-    if (localStorage.getItem("accessToken")) {
-        $.ajax({
-            async: false,
-            type: "GET",
-            url: "http://localhost:3333/api/admins/menu",
-            dataType: "json",
-            headers: {
-                token: 'Bearer ' + localStorage.getItem("accessToken"),
-            },
-            success: function (data) {
-                menu = data.menu
-            }
-        });
-    }
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: "http://localhost:3333/api/admins/menu",
+        dataType: "json",
+        success: function (data) {
+            menu = data.menu
+        }
+    });
     const mainFood = []
     const sideFood = []
     const drink = []
-    console.log(mainFood,
-        sideFood,
-        drink)
     if (menu) {
         for (let food of menu) {
             if (food.type == 1) {
@@ -58,8 +50,8 @@ function renderMenu() {
                 <a class="d-flex align-items-center text-start mx-3 pb-3 active" data-bs-toggle="pill" href="#tab-1">
                     <i class="fa fa-hamburger fa-2x text-primary"></i>
                     <div class="ps-3">
-                        <small class="text-body">Special</small>
-                        <h6 class="mt-n1 mb-0">Launch</h6>
+                        <small class="text-body">Đặc biệt</small>
+                        <h6 class="mt-n1 mb-0">Món chính</h6>
                     </div>
                 </a>
                 `
@@ -69,8 +61,8 @@ function renderMenu() {
                 <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-1">
                     <i class="fa fa-hamburger fa-2x text-primary"></i>
                     <div class="ps-3">
-                        <small class="text-body">Special</small>
-                        <h6 class="mt-n1 mb-0">Launch</h6>
+                        <small class="text-body">Đặc biệt</small>
+                        <h6 class="mt-n1 mb-0">Món chính</h6>
                     </div>
                 </a>
                 `
@@ -121,8 +113,8 @@ function renderMenu() {
                 <a class="d-flex align-items-center text-start mx-3 pb-3 active" data-bs-toggle="pill" href="#tab-2">
                 <i class="fa fa-utensils fa-2x text-primary"></i>
                 <div class="ps-3">
-                    <small class="text-body">Lovely</small>
-                    <h6 class="mt-n1 mb-0">Dinner</h6>
+                    <small class="text-body">Yêu thích</small>
+                    <h6 class="mt-n1 mb-0">Món phụ</h6>
                 </div>
             </a>
             `
@@ -132,8 +124,8 @@ function renderMenu() {
                 <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
                 <i class="fa fa-utensils fa-2x text-primary"></i>
                 <div class="ps-3">
-                    <small class="text-body">Lovely</small>
-                    <h6 class="mt-n1 mb-0">Dinner</h6>
+                    <small class="text-body">Yêu thích</small>
+                    <h6 class="mt-n1 mb-0">Món phụ</h6>
                 </div>
             </a>
             `
@@ -184,7 +176,7 @@ function renderMenu() {
                 <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active " data-bs-toggle="pill" href="#tab-3">
                     <i class="fa fa-coffee fa-2x text-primary"></i>
                     <div class="ps-3">
-                        <small class="text-body">Popular</small>
+                        <small class="text-body">Phổ biến</small>
                         <h6 class="mt-n1 mb-0">Đồ Uống</h6>
                     </div>
                 </a>
@@ -195,7 +187,7 @@ function renderMenu() {
                 <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 " data-bs-toggle="pill" href="#tab-3">
                     <i class="fa fa-coffee fa-2x text-primary"></i>
                     <div class="ps-3">
-                        <small class="text-body">Popular</small>
+                        <small class="text-body">Phổ biến</small>
                         <h6 class="mt-n1 mb-0">Đồ Uống</h6>
                     </div>
                 </a>

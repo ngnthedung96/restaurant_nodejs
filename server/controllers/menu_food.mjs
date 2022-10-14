@@ -6,13 +6,11 @@ import { resolve } from 'path';
 
 const getMenu = async (req, res, next) => {
     try {
-        if (req.admin) {
-            const menu = await menu_foodDb.findAll()
-            res.json({
-                status: true,
-                menu
-            })
-        }
+        const menu = await menu_foodDb.findAll()
+        res.json({
+            status: true,
+            menu
+        })
     } catch (e) {
         console.log(e.message)
         res.sendStatus(500) && next(e)

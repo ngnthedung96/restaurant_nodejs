@@ -48,6 +48,7 @@ function renderMenu(orders, count) {
                     <tr>
                         <td width="90">
                             <div class="cart-product-imitation">
+                            <img style = "width:90%" src="${order.food.img}" alt="">
                             </div>
                         </td>
                         <select class = "product hide " name="" id="">

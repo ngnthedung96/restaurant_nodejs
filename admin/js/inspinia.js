@@ -330,7 +330,7 @@ function renderAdmin(data) {
             const manageAdmin = permission.querySelector('ul')
             manageAdmin.innerHTML = `
         <li><a href="register.html">Tạo Tài Khoản</a></li>
-        <li><a href="table_admins.html">Bảng nhân viên</a></li>
+        <li><a href="index.html">Bảng nhân viên</a></li>
         `
             permission.appendChild(manageAdmin)
         }

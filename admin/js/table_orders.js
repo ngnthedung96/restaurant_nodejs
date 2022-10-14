@@ -58,6 +58,7 @@ function renderMenu(orders, count) {
                     <tr>
                         <td width="90">
                             <div class="cart-product-imitation">
+                            <img style = "width:90%" src="${order.food.img}" alt="">
                             </div>
                         </td>
                         <select class = "product hide " name="" id="">
@@ -106,7 +107,7 @@ function totalPrice() {
         }
     }
     totalPrice.innerHTML = `
-    <h3><i class="fa fa-money"></i>${count}</h3>
+    <h3><i class="fa fa-money mr-1"></i>${count}</h3>
     `
 }
 

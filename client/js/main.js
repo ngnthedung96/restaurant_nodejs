@@ -129,6 +129,7 @@ $(document).ready(function () {
             success: function (data) {
                 renderUserName(data)
                 logOut()
+                renderNav()
             }
         })
     }
@@ -145,6 +146,10 @@ function renderUserName(data) {
     userName.classList.remove("hide")
     logOutNav.classList.remove("hide")
     userName.innerText = `Xin Chào ${data.user.name} !`
+}
+function renderNav() {
+    const historyNav = document.querySelector(".history-nav")
+    historyNav.classList.remove('hide')
 }
 
 function logOut() {

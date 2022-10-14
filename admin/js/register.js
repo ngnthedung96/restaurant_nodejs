@@ -45,7 +45,7 @@ function register() {
             success: function (data) {
                 setTimeout(function () {
                     window.close()
-                    window.open('/admin/table_admins.html')
+                    window.open('/admin/index.html')
                 }, 1000)
             },
             error: function (data) {

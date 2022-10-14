@@ -1,6 +1,34 @@
 $(document).ready(function () {
+    checkPermission()
     renderTable()
+    renderTableRequest()
 });
+function checkPermission() {
+    if (localStorage.getItem("accessAdminToken")) {
+        $.ajax({
+            url: "http://localhost:3333/api/admins/home",
+            type: "GET",
+            dataType: 'json',
+            headers: {
+                token: 'Bearer ' + localStorage.getItem("accessAdminToken"),
+            },
+            success: function (data) {
+                if (data.admin.permission <= 1) {
+                    const nav = document.querySelector('.breadcrumb')
+                    nav.innerHTML = `
+                    <li class="breadcrumb-item">
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <strong>Quản lý bàn</strong>
+                        </li>
+                    `
+                }
+            }
+        })
+    }
+
+}
 
 function renderTable(idOfTO) {
     $.ajax({
@@ -25,8 +53,62 @@ function renderTable(idOfTO) {
     });
 }
 
+function renderTableRequest() {
+    const timeStart = moment().startOf('day')
+    const timeEnd = moment().endOf('day')
+    $.ajax({
+        type: "GET",
+        url: `http://localhost:3333/api/admins/requesttable/show/${timeStart}&${timeEnd}`,
+        dataType: "json",
+        headers: {
+            token: 'Bearer ' + localStorage.getItem("accessAdminToken"),
+        },
+        success: function (data) {
+            if (data.requests) {
+                renderTableRequestDetail(data)
+            }
+        }
+    });
+}
+
+function renderTableRequestDetail(data) {
+    const col = document.querySelector('.col-request')
+    col.classList.remove('hide')
+    const theadDiv = document.querySelector(".table-request thead tr")
+    theadDiv.innerHTML = `
+
+    <th>#</th>
+    <th>Tên khách hàng</th>
+    <th>Số điện thoại</th>
+    <th>Thời gian đặt</th>
+    <th>Số lượng người</th>
+    <th>Yêu cầu đặc biệt</th>
+
+    `
+    let htmls = ''
+    let count = 0
+    const tableDiv = document.querySelector(".table-request tbody")
+    for (let request of data.requests) {
+        if (request.status === 1) {
+            count++
+            htmls += `
+            <tr>
+                <td>${count}</td>
+                <td class = 'id hide'>${request.id}</td>
+                <td class = 'name'>${request.username}</td>
+                <td class = 'phone'>${request.phonenumber}</td>
+                <td class = 'time'>${moment.unix(request.time).format('HH:mm')}</td>
+                <td class = 'quantity'>${request.quantity}</td>
+                <td class = 'special_request'>${request.special_request}</td>
+            </tr>
+            `
+        }
+    }
+    tableDiv.innerHTML = htmls
+
+}
 function renderTableDetail(data, idOfTO) {
-    const theadDiv = document.querySelector(".table thead tr")
+    const theadDiv = document.querySelector(".all-table thead tr")
     if (data.permission === 2) {
         theadDiv.innerHTML = `
             <th>#</th>
@@ -46,7 +128,7 @@ function renderTableDetail(data, idOfTO) {
 
     var htmls = ''
     var count = 1
-    const tableDiv = document.querySelector(".table tbody")
+    const tableDiv = document.querySelector(".all-table tbody")
     for (var table of data.tables) {
         if (data.permission === 2) {
             if (table.status === -1) {
@@ -109,7 +191,11 @@ function renderTableDetail(data, idOfTO) {
             <td class = 'id hide'>${table.id}</td>
             <td class = 'name'>${table.name}</td>
             <td class = 'status'>Bàn Trống</td>
-            <td class = 'button'><button type="button" class="btn btn-outline-primary btn-order-table">Đặt bàn</button></td>
+            <td class = 'button'>
+            <button type="button" class="btn btn-outline-primary btn-order-table">Đặt bàn</button>
+            <button type="button" class="btn btn-outline-success btn-open-modal" data-toggle="modal" data-target="#userModal">Sử dụng bàn</button>
+            </td>
+            
         </tr>`
                 count++
             }

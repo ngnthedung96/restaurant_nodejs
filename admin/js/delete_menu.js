@@ -11,9 +11,6 @@ function getMenu() {
         type: "GET",
         url: "http://localhost:3333/api/admins/menu",
         dataType: "json",
-        headers: {
-            token: 'Bearer ' + localStorage.getItem("accessAdminToken"),
-        },
         success: function (data) {
             console.log(data)
             renderMenu(data.menu)
