@@ -1,5 +1,5 @@
 # restaurant_nodejs
-An restaurant website using NodeJS platform (Node.js + MySQL + Bootstrap 4 + JQuery).
+A restaurant website using NodeJS platform (Node.js + MySQL + Bootstrap 4 + JQuery).
 # How to run this project:
   1. Clone this project
   2. With MySQL database create tables: admins, logs, menu_food, orders, request_table, tables, table_order, timekeeping, users. 
