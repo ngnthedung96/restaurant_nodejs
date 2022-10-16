@@ -17,7 +17,7 @@
     border-left: 4px solid;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
     transition: all linear 0.3s;
-    animation: slide_show ease-in 0.7s, slide_hide linear 0.7s 0.7s forwards;
+    animation: slide_show ease-in 1s, slide_hide linear 1s 1s forwards;
 }
 
 @keyframes slide_show {
@@ -49,10 +49,12 @@
     }
 
     25% {
+        opacity: 1;
         transform: translateX(-10%);
     }
 
     50% {
+        opacity: 1;
         transform: translateX(+10%);
     }
 

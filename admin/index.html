@@ -42,6 +42,13 @@
                             </a>
                         </div>
                     </li>
+                    <li class="change-infor-nav">
+                        <a href="#"><span class="nav-label">Thay đổi thông tin</span><span
+                                class="fa arrow"></span></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="./changePass.html">Thay đổi mật khẩu</a></li>
+                        </ul>
+                    </li>
                     <li class="permission-nav hide">
                         <a href="#"><span class="nav-label">Quản lý nhân sự</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
@@ -112,7 +119,8 @@
                                             <th>Tên nhân viên</th>
                                             <th>Số điện thoại</th>
                                             <th>Email</th>
-                                            <th>Chi tiết giờ công</th>
+                                            <th>Chi tiết</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -130,6 +138,29 @@
         </div>
         <div id="toast">
 
+        </div>
+
+        <div id="Modal" style="font-size: 110%" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Xóa tài khoản</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn muốn xóa tài khoản ?</p>
+                        <p class="admin-id hide"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-danger btn-delete-admin" data-dismiss="modal">Xóa
+                            tài khoản</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
 

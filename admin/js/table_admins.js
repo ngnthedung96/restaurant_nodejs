@@ -11,9 +11,9 @@ function getAdmin() {
             token: 'Bearer ' + localStorage.getItem("accessAdminToken"),
         },
         success: function (data) {
-            console.log(data)
             renderTableDetail(data)
             showDetail()
+            deleteAdmin()
         }
     });
 
@@ -25,7 +25,8 @@ function renderTableDetail(data, idOfTO) {
     var count = 1
     const tableDiv = document.querySelector(".ibox-history .table")
     for (var admin of data.admins) {
-        dataTable.push([count, admin.id, admin.name, admin.phonenumber, admin.email, '<button type="button" class="btn btn-outline-success btn-show-detail">Xem chi tiết</button>'])
+        dataTable.push([count, admin.id, admin.name, admin.phonenumber, admin.email, '<button type="button" class="btn btn-outline-success btn-show-detail">Xem chi tiết</button>', `<button 
+        data-toggle="modal" data-target="#Modal" type="button" class="btn btn-outline-danger btn-show-deleteDetail">Xóa tài khoản</button>`])
         count++
     }
     $(tableDiv).DataTable({
@@ -74,6 +75,37 @@ function showDetail() {
         window.open(`/admin/manageTK.html?admin_id=${admin_id}`)
     });
 }
+function deleteAdmin() {
+    $(".btn-show-deleteDetail").click(function (e) {
+        e.preventDefault();
+        const adminIdInModal = document.querySelector('#Modal .modal-body .admin-id')
+        adminIdInModal.innerText = ''
+        const parentEl = getParent(e.target, 'tr')
+        const admin_id = parentEl.querySelector(".admin-id")
+        adminIdInModal.innerText = admin_id.innerText
+    });
+    $(".btn-delete-admin").click(function (e) {
+        e.preventDefault();
+        const parentEl = getParent(e.target, '.modal-content')
+        const admin_id = parentEl.querySelector(".admin-id").innerText
+        console.log(1)
+        $.ajax({
+            type: "DELETE",
+            url: `http://localhost:3333/api/admins/delete/${Number(admin_id)}`,
+            headers: {
+                token: 'Bearer ' + localStorage.getItem("accessAdminToken"),
+            },
+            dataType: "json",
+            success: function (data) {
+                successFunction(data)
+                getAdmin()
+            },
+            error: function (err) {
+                errorFunction(err.responseJSON.msg)
+            }
+        });
+    });
+}
 
 
 
@@ -106,9 +138,6 @@ function successFunction(data, check) {
             message: `${data.msg}`,
             type: 'Success',
         })
-        setTimeout(() => {
-            renderTable()
-        }, 1000);
 
     }
 }

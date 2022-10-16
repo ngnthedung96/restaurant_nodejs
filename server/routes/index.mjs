@@ -55,7 +55,7 @@ router.get('/users/findusers',
 router.post('/users/requesttable/',
     requestTableController.createRequest
 )
-router.get('/users/requesttable/show/',
+router.get('/users/requesttable/show/:timeStart&:timeEnd',
     tokenValidate.tokenUserValidate.verifyToken,
     requestTableController.showRequest
 )
@@ -66,6 +66,10 @@ router.get('/admins/requesttable/show/:timeStart&:timeEnd',
 router.put('/admins/requesttable/acceptRequest/:id',
     tokenValidate.tokenAdminValidate.verifyToken,
     requestTableController.acceptRequest
+)
+router.put('/users/requesttable/changeRequest/:id',
+    tokenValidate.tokenUserValidate.verifyToken,
+    requestTableController.changeRequest
 )
 router.put('/admins/requesttable/refuseRequest/:id',
     tokenValidate.tokenAdminValidate.verifyToken,
@@ -101,6 +105,14 @@ router.post('/admins/register',
 router.post('/admins/logout',
     tokenValidate.tokenAdminValidate.verifyToken,
     adminController.logOut
+)
+router.delete('/admins/delete/:admin_id',
+    tokenValidate.tokenAdminValidate.verifyToken,
+    adminController.deleteAdmin
+)
+router.post('/admins/changpassword/',
+    tokenValidate.tokenAdminValidate.verifyToken,
+    adminController.updateInfor
 )
 
 //table

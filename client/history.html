@@ -26,12 +26,15 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./toastResource/toast.css">
 </head>
 
 <body>
@@ -63,7 +66,7 @@
                         <a href="#" class="nav-item nav-link username hide">Xin Chào</a>
                         <a href="index.html" class="nav-item nav-link">Trang chủ</a>
                         <a href="about.html" class="nav-item nav-link">Về chúng tôi</a>
-                        <a href="#" class="nav-item nav-link active">Lịch sử đặt bàn</a>
+                        <a href="#" class="nav-item nav-link active history-nav">Lịch sử đặt bàn</a>
                         <a href="contact.html" class="nav-item nav-link ">Liên hệ</a>
                         <a href="#" class="nav-item nav-link logOut-nav hide" data-bs-toggle="modal"
                             data-bs-target="#logOutModal">Đăng Xuất</a>
@@ -96,6 +99,11 @@
                 </div>
                 <div class="row g-4">
                     <div class="col-12">
+                        <div id="order-sort"
+                            style="background: #fff; cursor: pointer; padding: 5px 10px; margin-bottom: 2%; border-radius: 5%; border: 1px solid #ccc; width: 20%">
+                            <i class="fa fa-calendar"></i>&nbsp;
+                            <span></span> <i class="fa fa-caret-down"></i>
+                        </div>
                         <table class="table table-hover table-request">
                             <thead>
                                 <tr>
@@ -107,6 +115,8 @@
                                     <td>Thời gian đặt bàn</td>
                                     <td>Thời gian tạo yêu cầu</td>
                                     <td>Trạng thái</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -201,9 +211,10 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js    "></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="js/history.js"></script>
+    <script type="module" src="js/history.js"></script>
 </body>
 
 </html>

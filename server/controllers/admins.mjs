@@ -208,26 +208,47 @@ const getAdminById = async (req, res, next) => {
         res.sendStatus(500) && next(e)
     }
 }
-
-const updateInfor = async (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        res.status(422).json({ errors: errors.array() });
-        return;
-    }
+const deleteAdmin = async (req, res, next) => {
     try {
         if (req.admin) {
-            const user = await adminDb.findById(req.user.id, 'id')
-            await user.update({
-                email: req.body.email,
-                password: req.body.password
-            })
-            await user.save()
-            res.json({
-                status: true,
-                msg: 'Thay đổi thông tin thành công',
-                user
-            })
+            const admin = await adminDb.findById(req.admin.id)
+            if (admin.dataValues.permission < 1) {
+                const { admin_id } = req.params
+                const admin = await adminDb.deleteById(admin_id)
+                res.json({
+                    status: true,
+                    msg: "Xóa thành công"
+                })
+            }
+        }
+    } catch (e) {
+        console.log(e.message)
+        res.sendStatus(500) && next(e)
+    }
+}
+
+const updateInfor = async (req, res, next) => {
+    try {
+        if (req.admin) {
+            const { oldPass, newPass } = req.body
+            const admin = await adminDb.findById(req.admin.id, 'id')
+            if (oldPass === admin.dataValues.password) {
+                await admin.update({
+                    password: newPass
+                })
+                await admin.save()
+                res.json({
+                    status: true,
+                    msg: 'Thay đổi mật khẩu thành công',
+                    admin
+                })
+            }
+            else {
+                res.status(500).json({
+                    status: true,
+                    msg: 'Sai mật khẩu'
+                })
+            }
         }
     } catch (e) {
         console.log(e.message)
@@ -245,5 +266,6 @@ export const adminController = {
     updateInfor,
     logOut,
     getAdmin,
-    getAdmins
+    getAdmins,
+    deleteAdmin
 }

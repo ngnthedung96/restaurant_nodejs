@@ -129,6 +129,20 @@ const findByEmail = async (value, field) => {
   }
   return res;
 }
+const deleteById = async (value, field) => {
+  let res = null;
+  try {
+    res = await Admins.destroy({
+      where: {
+        'id': value,
+      }
+    });
+  }
+  catch (err) {
+    logger.error(err)
+  }
+  return res;
+}
 
 
 export const adminDb = {
@@ -137,5 +151,6 @@ export const adminDb = {
   findByPassword,
   findById,
   findAll,
-  register
+  register,
+  deleteById
 }

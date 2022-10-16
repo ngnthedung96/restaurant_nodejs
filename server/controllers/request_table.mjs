@@ -85,10 +85,14 @@ const createRequest = async (req, res, next) => {
 const showRequest = async (req, res, next) => {
     try {
         if (req.user) {
-            const requests = await requestTableDb.findById(req.user.id)
+            const { timeStart, timeEnd } = req.params
+            const timeStartInt = strtotime(timeStart)
+            const timeEndInt = strtotime(timeEnd)
+            const requests = await requestTableDb.findBetween(timeStartInt,
+                timeEndInt)
             res.json({
                 status: true,
-                requests
+                requests: requests[0]
             })
         }
 
@@ -142,6 +146,24 @@ const acceptRequest = async (req, res, next) => {
         res.sendStatus(500) && next(e)
     }
 }
+const changeRequest = async (req, res, next) => {
+    try {
+        if (req.user) {
+            const { id } = req.params
+            const request = await requestTableDb.findByRequestId(id)
+            await request.update({ status: -2 })
+            await request.save()
+            res.json({
+                status: true,
+                request
+            })
+        }
+
+    } catch (e) {
+        console.log(e.message)
+        res.sendStatus(500) && next(e)
+    }
+}
 const refuseRequest = async (req, res, next) => {
     try {
         if (req.admin) {
@@ -172,5 +194,6 @@ export const requestTableController = {
     showRequest,
     showAllRequest,
     acceptRequest,
-    refuseRequest
+    refuseRequest,
+    changeRequest
 }

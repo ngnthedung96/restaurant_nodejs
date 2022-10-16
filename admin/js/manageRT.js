@@ -66,16 +66,24 @@ function renderTableDetail(data) {
         if (request.status === 0) {
             dataTable.push([countRow, request.id, request.phonenumber, request.username,
                 request.quantity, request.special_request,
-                request.time, request.time_created,
+                moment.unix(request.time).format("DD-MM-YYYY HH:mm"), moment.unix(request.time_created).format("DD-MM-YYYY HH:mm"),
                 '<button type="button" class="btn btn-outline-success btn-accept">Chấp nhận</button>',
                 ' <button type="button" class="btn btn-outline-danger btn-refuse">Từ chối</button>'])
         }
         else if (request.status === 1) {
             dataTable.push([countRow, request.id, request.phonenumber, request.username,
                 request.quantity, request.special_request,
-                request.time, request.time_created,
+                moment.unix(request.time).format("DD-MM-YYYY HH:mm"), moment.unix(request.time_created).format("DD-MM-YYYY HH:mm"),
                 "<p class = 'text-success'>Đã chấp nhận</p>", ""])
-        } else {
+        }
+        else if (request.status === -2) {
+            dataTable.push([countRow, request.id, request.phonenumber, request.username,
+                request.quantity, request.special_request,
+                moment.unix(request.time).format("DD-MM-YYYY HH:mm"), moment.unix(request.time_created).format("DD-MM-YYYY HH:mm"),
+                "<p class = 'text-danger'>Khách đã hủy yêu cầu</p>", ""])
+        }
+
+        else {
             dataTable.push([countRow, request.id, request.phonenumber, request.username,
                 request.quantity, request.special_request,
                 request.time, request.time_created,
